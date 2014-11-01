@@ -1,3 +1,5 @@
+require "fileutils" 
+
 FileUtils.rm_rf "TeamCityStatusMonitor.zip"
 FileUtils.rm_rf "temp"
 FileUtils.mkdir "temp"
