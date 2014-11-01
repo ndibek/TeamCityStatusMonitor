@@ -13,9 +13,12 @@ $('#save').on('click', function() {
     hideCursor    : $('#hideCursor').prop("checked"),
   }, function() {
     var status = $('#status');
-    status.text('Options saved.');
+    status.text("  Options saved.");
+    var button = $("#save");
+    button.prop("disabled", true);
     setTimeout(function() {
       status.text('');
+      button.prop("disabled", false);
     }, 1000);
   });
 });

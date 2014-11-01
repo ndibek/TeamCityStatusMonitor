@@ -9,7 +9,12 @@
     "storage"
   ],
   
-  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true,
+    "open_in_tab": false
+  },
+
   "content_scripts": [
     {
       "matches": ["*://*/externalStatus.html"],
