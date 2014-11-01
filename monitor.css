@@ -1,6 +1,7 @@
 .tsm_date {
-  font-size: 2em;
-  float    : right;
+  font-size : 2em;
+  float     : right;
+  text-align: right;
 }
 
 .tsm_date, .tsm_configurationName, .tsm_buildNumber {
@@ -15,7 +16,7 @@
 }
 
 .tsm_buildNumber {
-  font-size: 3em;
+  font-size: 2.5em;
   float    : left;
   opacity  : 0.5;
   position : absolute;

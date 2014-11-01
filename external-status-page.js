@@ -15,12 +15,13 @@ function ExternalStatusPage () {
 				var buildNumber = $("div.teamCityBuildNumber a", row).text().trim();
 				var date = $("div.teamCityDateTime", row).text().trim();
 
-				failedConfigurations.push({
-					name: projectName + " :: " + configurationName,
-					number: buildNumber,
-					date: date,
-				});
+				var build = new Build(
+					projectName + " :: " + configurationName,
+					buildNumber,
+					date
+				);
 
+				failedConfigurations.push(build);
 			});
 		});
 		return failedConfigurations;

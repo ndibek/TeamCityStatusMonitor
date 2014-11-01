@@ -38,9 +38,9 @@ function ReplacementPage(hideCursor) {
 				boxElement.css("cursor", "none");
 			}
 
-			var heading = $("<div>").text(build.name).addClass("tsm_configurationName");
-			var number  = $("<div>").text(build.number).addClass("tsm_buildNumber");
-			var date    = $("<div>").text(build.date).addClass("tsm_date");
+			var heading = $("<div>").text(build.getName()).addClass("tsm_configurationName");
+			var number  = $("<div>").text(build.getNumber()).addClass("tsm_buildNumber");
+			var date    = $("<div>").html(build.getDate() + "<br>" + build.getElapsedTime()).addClass("tsm_date");
 
 			boxElement.append(heading).append(number).append(date);
 			boxElement.appendTo($("body"));
