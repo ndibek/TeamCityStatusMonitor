@@ -1,10 +1,13 @@
+
+//  "cursor"          : "none",
+
 var originalPage = new ExternalStatusPage();
 var failedConfigurations = originalPage.getFailedConfigurations();
 
 var replacementPage = new ReplacementPage();
 
 if (failedConfigurations.length === 0) {
-	replacementPage.renderSuccess();
+	replacementPage.renderSuccess("Everything is passing ( ͡° ͜ʖ ͡°)");
 }
 else {
 	replacementPage.renderFailures(failedConfigurations);

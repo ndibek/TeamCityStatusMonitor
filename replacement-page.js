@@ -1,34 +1,13 @@
-  var boxStyle = {
-//	"cursor"          : "none",
-	"position"          : "absolute",
-	"float"             : "left",
-	"margin"            : 0,
-	"padding"           : 0,
-	"border"            : "solid 3px black",
-	"font-family"       : "Arial,Helvetica,sans-serif",
-	"box-sizing"        :"border-box",
-	"-moz-box-sizing"   :"border-box",
-	"-webkit-box-sizing":"border-box",
-	"left"              : 0,
-	"background-color"  : "green",
-	"top"               : 0,
-};
-
 function ReplacementPage () {
-  this.renderSuccess = function() {
+
+  this.renderSuccess = function(successMessage) {
   	var elements = [];
 		var width = window.innerWidth;
 		var height = window.innerHeight;
 		
-		var boxStyle2 = {};
-		$.extend(boxStyle2, boxStyle, {
-			"height"          : height,
-			"width"           : width,
-		});
+		var boxElement = $("<div>").addClass("tsm_box").css("height", height).css("width", width);
 
-		var boxElement = $("<div>").css(boxStyle2);
-
-		var nameElement = $("<div>").text("Everything is passing ( ͡° ͜ʖ ͡°)").css(configurationNameStyle);
+		var nameElement = $("<div>").text(successMessage).addClass("tsm_configurationName");
 		boxElement.append(nameElement);
 
 		elements.push(boxElement);
@@ -41,26 +20,18 @@ function ReplacementPage () {
   	var elements = [];
 		var width = window.innerWidth;
 		var height = window.innerHeight;
-  	height = window.innerHeight / failedConfigurations.length;
+  	height = height / failedConfigurations.length;
 		$.each(failedConfigurations, function(index, build) {
-			var boxStyle2 = {};
-			$.extend(boxStyle2, boxStyle, {
-				"height"          : height,
-				"width"           : width,
-				"background-color": "red",
-				"top"             : height * index,
-			});
+			var boxElement = $("<div id='fail'>").addClass("tsm_box").css("height", height).css("width", width).css("background-color", "red").css("top", height * index);
 
-			var boxElement = $("<div id='fail'>").css(boxStyle2);
-
-			var nameElement = $("<div>").text(build.name).addClass("configurationNameStyle");
+			var nameElement = $("<div>").text(build.name).addClass("tsm_configurationName");
 			boxElement.append(nameElement);
 
-			var numberElement = $("<div>").text(build.number).addClass("buildNumberStyle");
+			var numberElement = $("<div>").text(build.number).addClass("tsm_buildNumber");
 			boxElement.append(numberElement);
 
 			var desc = "Finished: " + build.date;
-			var descElement = $("<div>").text(desc).addClass("dateStyle");
+			var descElement = $("<div>").text(desc).addClass("tsm_date");
 			boxElement.append(descElement);
 			elements.push(boxElement);
 		});	
@@ -68,4 +39,5 @@ function ReplacementPage () {
 			$("<div>").appendTo($("body").append(element));
 		});
   }
+
 }
