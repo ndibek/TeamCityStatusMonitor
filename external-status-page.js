@@ -12,11 +12,25 @@ function ExternalStatusPage () {
 				}
 
 				var configurationName = $("td.buildConfigurationName", row).text().trim();
+
+				if ($("img.buildTypeIcon", row).attr("src").search(/buildGray.png/) > 0) {
+					var build = new Build(
+						projectName,
+						configurationName,
+						false
+					);
+
+					failedConfigurations.push(build);
+					return;
+				}
+
 				var buildNumber = $("div.teamCityBuildNumber a", row).text().trim();
 				var date = $("div.teamCityDateTime", row).text().trim();
 
 				var build = new Build(
-					projectName + " :: " + configurationName,
+					projectName,
+					configurationName,
+					true,
 					buildNumber,
 					date
 				);

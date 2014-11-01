@@ -1,11 +1,13 @@
-function Build(name, number, date) {
+function Build(project, name, failed, number, date) {
 	
+	this.project = project;
 	this.name = name;
+	this.failed = failed;
 	this.number = number;
 	this.date = date;
 
   this.getName = function() {
-		return this.name;
+		return this.project + " :: " + this.name;
   };
 
   this.getNumber = function() {
@@ -15,6 +17,10 @@ function Build(name, number, date) {
   this.getDate = function() {
   	return this.date;
   };
+
+  this.hasFailed = function () {
+  	return this.failed;
+  }
 
   this.getDateObject = function() {
 		var months = {

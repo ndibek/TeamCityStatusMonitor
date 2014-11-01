@@ -24,10 +24,9 @@ function ReplacementPage(hideCursor) {
   	self.height = this.height / failedConfigurations.length;
 
 		$.each(failedConfigurations, function(index, build) {
-			var boxElement = $("<div id='fail'>").addClass("tsm_box")
+			var boxElement = $("<div>").addClass("tsm_box")
 			                     .css("height", self.height)
 			                     .css("width", self.width)
-			                     .css("background-color", "red")
 			                     .css("top", self.height * index);
 
 			if (index > 0) {
@@ -38,12 +37,25 @@ function ReplacementPage(hideCursor) {
 				boxElement.css("cursor", "none");
 			}
 
-			var heading = $("<div>").text(build.getName()).addClass("tsm_configurationName");
-			var number  = $("<div>").text(build.getNumber()).addClass("tsm_buildNumber");
-			var date    = $("<div>").html(build.getDate() + "<br>" + build.getElapsedTime()).addClass("tsm_date");
+			if (build.hasFailed()) {
+				var heading = $("<div>").text(build.getName()).addClass("tsm_configurationName");
+				var number  = $("<div>").text(build.getNumber()).addClass("tsm_buildNumber");
+				var date    = $("<div>").html("Failed on " + build.getDate() + "<br>" + build.getElapsedTime()).addClass("tsm_date");
 
-			boxElement.append(heading).append(number).append(date);
-			boxElement.appendTo($("body"));
+				boxElement.css("background-color", "red");
+				boxElement.append(heading).append(number).append(date);
+				boxElement.appendTo($("body"));	
+			}
+			else {
+				var heading = $("<div>").text(build.getName()).addClass("tsm_configurationName");
+				var date    = $("<div>").html("Build has never run").addClass("tsm_date");
+
+				boxElement.css("background-color", "orange");
+				boxElement.append(heading).append(date);;
+				boxElement.appendTo($("body"));
+			}
+
+			
 		});	
   };
 
