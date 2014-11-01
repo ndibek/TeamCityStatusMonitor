@@ -10,9 +10,19 @@ var configurationNameStyle = {
 };
 
 var dateStyle = {
-	"font-size": "1.5em",
+	"font-size": "2em",
 	"float"    : "right",
 };
+
+var buildNumberStyle = {
+	"font-size": "3em",
+	"float"    : "left",
+	"color"    : "white",
+	"opacity"  : "0.5",
+	"position" : "absolute",
+	"bottom"   : "0.2em",
+	"left"     : "0.2em",
+}
 
 var boxStyle = {
 //	"cursor"          : "none",
@@ -53,7 +63,9 @@ $("tr").each(function()
 	var configurationName = nameContainer.text().trim();
 	var date = $(".teamCityDateTime", this).text();
 	
-	var build = {name: projectName + " :: " + configurationName, date: date};
+	var buildNumber = $(".teamCityBuildNumber a", this).text().trim();
+
+	var build = {name: projectName + " :: " + configurationName, number: buildNumber, date: date};
 	failedConfigurations.push(build);
 });
 
@@ -92,6 +104,9 @@ else
 
 		var nameElement = $("<div>").text(build.name).css(configurationNameStyle);
 		boxElement.append(nameElement);
+
+		var numberElement = $("<div>").text(build.number).css(buildNumberStyle);
+		boxElement.append(numberElement);
 
 		var desc = "Finished: " + build.date;
 		var descElement = $("<div>").text(desc).css(dateStyle);
