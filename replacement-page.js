@@ -1,5 +1,20 @@
+  var boxStyle = {
+//	"cursor"          : "none",
+	"position"          : "absolute",
+	"float"             : "left",
+	"margin"            : 0,
+	"padding"           : 0,
+	"border"            : "solid 3px black",
+	"font-family"       : "Arial,Helvetica,sans-serif",
+	"box-sizing"        :"border-box",
+	"-moz-box-sizing"   :"border-box",
+	"-webkit-box-sizing":"border-box",
+	"left"              : 0,
+	"background-color"  : "green",
+	"top"               : 0,
+};
+
 function ReplacementPage () {
-  
   this.renderSuccess = function() {
   	var elements = [];
 		var width = window.innerWidth;
@@ -38,14 +53,14 @@ function ReplacementPage () {
 
 			var boxElement = $("<div id='fail'>").css(boxStyle2);
 
-			var nameElement = $("<div>").text(build.name).css(configurationNameStyle);
+			var nameElement = $("<div>").text(build.name).addClass("configurationNameStyle");
 			boxElement.append(nameElement);
 
-			var numberElement = $("<div>").text(build.number).css(buildNumberStyle);
+			var numberElement = $("<div>").text(build.number).addClass("buildNumberStyle");
 			boxElement.append(numberElement);
 
 			var desc = "Finished: " + build.date;
-			var descElement = $("<div>").text(desc).css(dateStyle);
+			var descElement = $("<div>").text(desc).addClass("dateStyle");
 			boxElement.append(descElement);
 			elements.push(boxElement);
 		});	
