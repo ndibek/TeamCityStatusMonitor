@@ -40,18 +40,19 @@ function ReplacementPage(hideCursor) {
 			if (build.hasFailed()) {
 				var heading = $("<div>").text(build.getName()).addClass("tsm_configurationName");
 				var number  = $("<div>").text(build.getNumber()).addClass("tsm_buildNumber");
-				var date    = $("<div>").html("Failed on " + build.getDate() + "<br>" + build.getElapsedTime()).addClass("tsm_date");
+				var date    = $("<div>").text("Failed on " + build.getDate()).addClass("tsm_date");
+				var elapsed = $("<div>").text(build.getElapsedTime()).addClass("tsm_elapsed");
 
 				boxElement.css("background-color", "red");
-				boxElement.append(heading).append(number).append(date);
+				boxElement.append(heading).append(number).append(date).append(elapsed);
 				boxElement.appendTo($("body"));	
 			}
 			else {
 				var heading = $("<div>").text(build.getName()).addClass("tsm_configurationName");
-				var date    = $("<div>").html("Build has never run").addClass("tsm_date");
+				var message = $("<div>").html("Build has never run").addClass("tsm_date");
 
 				boxElement.css("background-color", "orange");
-				boxElement.append(heading).append(date);;
+				boxElement.append(heading).append(message);;
 				boxElement.appendTo($("body"));
 			}
 

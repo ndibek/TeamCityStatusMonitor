@@ -4,6 +4,8 @@ var run = function(config) {
 	}, 1000 * config.refreshRate);
 	
 	var originalPage = new ExternalStatusPage();
+	originalPage.hide();	
+
 	var failedConfigurations = originalPage.getFailedConfigurations();
 
 	var replacementPage = new ReplacementPage(config.hideCursor);
@@ -14,8 +16,6 @@ var run = function(config) {
 	else {
 		replacementPage.renderFailures(failedConfigurations);
 	}
-
-	originalPage.hide();	
 }
 
 loadConfig(run);

@@ -1,13 +1,19 @@
-.tsm_date {
+.tsm_date, .tsm_elapsed {
   font-size : 2em;
   float     : right;
   text-align: right;
 }
 
-.tsm_date, .tsm_configurationName, .tsm_buildNumber {
+.tsm_elapsed {
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+.tsm_elapsed, .tsm_date, .tsm_configurationName, .tsm_buildNumber {
   color      : white;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  margin     : 0.1em;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  margin     : 0.2em;
 }
 
 .tsm_configurationName {
