@@ -5,10 +5,11 @@
   "description": "This extension displays TeamCity build status",
   "version": "0.4",
 
-  "options_page": "options.html",
   "permissions": [
     "storage"
   ],
+  
+  "options_page": "options.html",
   "content_scripts": [
     {
       "matches": ["*://*/externalStatus.html"],

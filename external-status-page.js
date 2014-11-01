@@ -1,31 +1,32 @@
 function ExternalStatusPage () {
+
   this.getFailedConfigurations = function() {
     var failedConfigurations = [];
-		$("table.tcTable").each(function() {
+    
+		$("table.tcTable").each(function(index, table) {
 			var projectName = $("div.projectName", this).text().trim();
 			
-			$("tr", this).each(function(index) {
-				if (index == 0) {
+			$("tr", table).each(function(index, row) {
+				if (index == 0 || $("img.buildTypeIcon", row).attr("src").search(/success.png/) > 0) {
 					return;
 				}
-				
-				var successful = $("img.buildTypeIcon", this).attr("src").search(/success.png/) > 0;
-				if (successful === true)
-				{
-					return;
-				}		
 
-				var configurationName = $("td.buildConfigurationName", this).text().trim();
-				var buildNumber = $("div.teamCityBuildNumber a", this).text().trim();
-				var date = $("div.teamCityDateTime", this).text().trim();
+				var configurationName = $("td.buildConfigurationName", row).text().trim();
+				var buildNumber = $("div.teamCityBuildNumber a", row).text().trim();
+				var date = $("div.teamCityDateTime", row).text().trim();
 
-				var build = {name: projectName + " :: " + configurationName, number: buildNumber, date: date};
-				failedConfigurations.push(build);
+				failedConfigurations.push({
+					name: projectName + " :: " + configurationName,
+					number: buildNumber,
+					date: date,
+				});
+
 			});
 		});
 		return failedConfigurations;
   };
+
   this.hide = function() {
   	$("table.tcTable").hide();
-  }
+  };
 }

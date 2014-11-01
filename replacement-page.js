@@ -30,6 +30,10 @@ function ReplacementPage(hideCursor) {
 			                     .css("background-color", "red")
 			                     .css("top", self.height * index);
 
+			if (index > 0) {
+				boxElement.css("border-top-width", "0px");
+			}
+
 			if (self.hideCursor) {
 				boxElement.css("cursor", "none");
 			}
