@@ -3,7 +3,7 @@
 
   "name": "TeamCity Status Monitor",
   "description": "This extension displays TeamCity build status",
-  "version": "0.4",
+  "version": "0.5",
 
   "permissions": [
     "storage"
