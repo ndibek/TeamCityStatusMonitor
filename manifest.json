@@ -12,7 +12,7 @@
   "content_scripts": [
     {
       "matches": ["*://*/externalStatus.html"],
-      "js": ["jquery-1.11.1.min.js", "sizzle.min.js", "monitor.js"]
+      "js": ["jquery-1.11.1.min.js", "external-status-page.js", "replacement-page.js", "monitor.js"]
     }
   ]
 }

@@ -43,83 +43,19 @@ var boxStyle = {
 $.extend(dateStyle, baseTextStyle);
 $.extend(configurationNameStyle, baseTextStyle);
 
-var projectName;
-var failedConfigurations = [];
-$("tr").each(function()
-{
-	var nameContainer = $("td.buildConfigurationName", this);
-	if (nameContainer.length === 0) {
-		projectName = $("a.buildTypeName", this).text().trim();
-		return;
-	}
+var originalPage = new ExternalStatusPage();
+var failedConfigurations = originalPage.getFailedConfigurations();
 
-	var successful = $("img", nameContainer).attr("src").search(/success.png/) > 0;
+var replacementPage = new ReplacementPage();
 
-	if (successful === true)
-	{
-		return;
-	}
-
-	var configurationName = nameContainer.text().trim();
-	var date = $(".teamCityDateTime", this).text();
-	
-	var buildNumber = $(".teamCityBuildNumber a", this).text().trim();
-
-	var build = {name: projectName + " :: " + configurationName, number: buildNumber, date: date};
-	failedConfigurations.push(build);
-});
-
-var failedConfigurationsCount = failedConfigurations.length;
-var elements = [];
-var width = window.innerWidth;
-var height = window.innerHeight;
-if (failedConfigurationsCount === 0)
-{
-		var boxStyle2 = {};
-		$.extend(boxStyle2, boxStyle, {
-			"height"          : height,
-			"width"           : width,
-		});
-
-		var boxElement = $("<div>").css(boxStyle2);
-
-		var nameElement = $("<div>").text("Everything is passing ( ͡° ͜ʖ ͡°)").css(configurationNameStyle);
-		boxElement.append(nameElement);
-
-		elements.push(boxElement);
+if (failedConfigurations.length === 0) {
+	replacementPage.renderSuccess();
 }
-else
-{
-	height = window.innerHeight / failedConfigurationsCount;
-	$.each(failedConfigurations, function(index, build) {
-		var boxStyle2 = {};
-		$.extend(boxStyle2, boxStyle, {
-			"height"          : height,
-			"width"           : width,
-			"background-color": "red",
-			"top"             : height * index,
-		});
-
-		var boxElement = $("<div id='fail'>").css(boxStyle2);
-
-		var nameElement = $("<div>").text(build.name).css(configurationNameStyle);
-		boxElement.append(nameElement);
-
-		var numberElement = $("<div>").text(build.number).css(buildNumberStyle);
-		boxElement.append(numberElement);
-
-		var desc = "Finished: " + build.date;
-		var descElement = $("<div>").text(desc).css(dateStyle);
-		boxElement.append(descElement);
-		elements.push(boxElement);
-	});	
+else {
+	replacementPage.renderFailures(failedConfigurations);
 }
 
-$.each(elements, function(index, element) {
-	$("<div>").appendTo($("body").append(element));
-});
-
-$(".tcTable").hide();
+originalPage.hide();
 
 chrome.storage.sync.get({
 	refreshRate: 10,
