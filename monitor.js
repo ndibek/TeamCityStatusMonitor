@@ -121,12 +121,10 @@ $.each(elements, function(index, element) {
 
 $(".tcTable").hide();
 
-window.setTimeout(function() {
-	document.location.reload();
-}, 10 * 1000);
-
-// chrome.storage.sync.get({
-//   favoriteColor: 'red',
-// }, function(items) {
-//    console.log(items.favoriteColor);
-// });
+chrome.storage.sync.get({
+	refreshRate: 10,
+}, function(items) {
+ 	window.setTimeout(function() {
+		document.location.reload();
+	}, 1000 * items.refreshRate);
+});
