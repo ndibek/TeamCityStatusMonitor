@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head><title>TeamCity Status Monitor Options</title></head>
-<body>
 
-<label for="refreshRate">
-Refresh rate (seconds):
-</label>
-<input type="text" id="refreshRate" />
+	<head>
+		<title>TeamCity Status Monitor Options</title>
+	</head>
 
-<br /><br />
+	<body>
+		<label for="refreshRate">
+			Refresh rate (seconds):
+		</label>
+		<input type="text" id="refreshRate" />
 
-<label for="successMessage">
-Success message: 
-</label>
-<input type="text" id="successMessage" />
+		<br /><br />
 
-<br /><br />
+		<label for="successMessage">
+			Success message: 
+		</label>
+		<input type="text" id="successMessage" />
 
-<label for="hideCursor">
-Hide cursor: 
-</label>
-<input type="checkbox" id="hideCursor" />
+		<br /><br />
 
-<br /><br />
+		<label for="hideCursor">
+			Hide cursor: 
+		</label>
+		<input type="checkbox" id="hideCursor" />
 
-<div id="status"></div>
-<button id="save">Save</button>
+		<br /><br />
 
-<script src="options.js"></script>
-</body>
+		<div id="status"></div>
+
+		<br />
+
+		<button id="save">Save</button>
+
+		<script src="jquery-1.11.1.min.js"></script>
+		<script src="storage.js"></script>
+		<script src="options.js"></script>
+	</body>
 </html>

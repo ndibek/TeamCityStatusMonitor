@@ -18,11 +18,4 @@ var run = function(config) {
 	originalPage.hide();	
 }
 
-
-chrome.storage.local.get({
-	refreshRate: 10,
-	successMessage: "It's all good",
-	hideCursor: false,
-}, function(config) {
-	run(config); 	
-});
+loadConfig(run);

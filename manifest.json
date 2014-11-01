@@ -13,7 +13,7 @@
     {
       "matches": ["*://*/externalStatus.html"],
       "css": ["monitor.css"],
-      "js": ["jquery-1.11.1.min.js", "external-status-page.js", "replacement-page.js", "monitor.js"]
+      "js": ["jquery-1.11.1.min.js", "storage.js", "external-status-page.js", "replacement-page.js", "monitor.js"]
     }
   ]
 }

@@ -1,54 +1,46 @@
 function ReplacementPage(hideCursor) {
 
 	this.hideCursor = hideCursor;
+	this.height     = window.innerHeight;
+	this.width      = window.innerWidth;
 
   this.renderSuccess = function(successMessage) {
-  	var elements = [];
-		var width = window.innerWidth;
-		var height = window.innerHeight;
-		
-		var boxElement = $("<div>").addClass("tsm_box").css("height", height).css("width", width);
+		var boxElement = $("<div>").addClass("tsm_box")
+												.css("height", this.height)
+												.css("width",  this.width);
 
 		if (this.hideCursor) {
 			boxElement.css("cursor", "none");
 		}
 
-		var nameElement = $("<div>").text(successMessage).addClass("tsm_configurationName");
-		boxElement.append(nameElement);
+		var heading = $("<div>").text(successMessage).addClass("tsm_configurationName");
 
-		elements.push(boxElement);
-		$.each(elements, function(index, element) {
-			$("<div>").appendTo($("body").append(element));
-		});
+		boxElement.append(heading);
+		boxElement.appendTo($("body"));
   };
 
   this.renderFailures = function(failedConfigurations) {
-  	var elements = [];
-		var width = window.innerWidth;
-		var height = window.innerHeight;
-  	height = height / failedConfigurations.length;
   	var self = this;
+  	self.height = this.height / failedConfigurations.length;
+
 		$.each(failedConfigurations, function(index, build) {
-			var boxElement = $("<div id='fail'>").addClass("tsm_box").css("height", height).css("width", width).css("background-color", "red").css("top", height * index);
+			var boxElement = $("<div id='fail'>").addClass("tsm_box")
+			                     .css("height", self.height)
+			                     .css("width", self.width)
+			                     .css("background-color", "red")
+			                     .css("top", self.height * index);
 
 			if (self.hideCursor) {
 				boxElement.css("cursor", "none");
 			}
 
-			var nameElement = $("<div>").text(build.name).addClass("tsm_configurationName");
-			boxElement.append(nameElement);
+			var heading = $("<div>").text(build.name).addClass("tsm_configurationName");
+			var number  = $("<div>").text(build.number).addClass("tsm_buildNumber");
+			var date    = $("<div>").text(build.date).addClass("tsm_date");
 
-			var numberElement = $("<div>").text(build.number).addClass("tsm_buildNumber");
-			boxElement.append(numberElement);
-
-			var desc = "Finished: " + build.date;
-			var descElement = $("<div>").text(desc).addClass("tsm_date");
-			boxElement.append(descElement);
-			elements.push(boxElement);
+			boxElement.append(heading).append(number).append(date);
+			boxElement.appendTo($("body"));
 		});	
-		$.each(elements, function(index, element) {
-			$("<div>").appendTo($("body").append(element));
-		});
   };
 
 }
