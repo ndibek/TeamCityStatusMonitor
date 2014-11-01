@@ -8,6 +8,7 @@ FileUtils.cp_r "css", "temp\\css"
 FileUtils.cp_r "vendor", "temp\\vendor"
 FileUtils.cp_r "html", "temp\\html"
 FileUtils.cp_r "icon", "temp\\icon"
+FileUtils.cp_r "js", "temp\\js"
 FileUtils.cp_r "manifest.json", "temp"
 
 require "zip/zip"

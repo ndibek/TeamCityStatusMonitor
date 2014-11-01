@@ -4,7 +4,7 @@
   "name": "TeamCity Status Monitor",
   "short_name" : "TC StatusMon",
   "description": "This extension displays TeamCity build status",
-  "version": "0.8",
+  "version": "0.9",
 
   "author" : "Jamie Holdstock", 
 
