@@ -1,21 +1,32 @@
-require "zip"
-
 FileUtils.rm_rf "TeamCityStatusMonitor.zip"
 FileUtils.rm_rf "temp"
 FileUtils.mkdir "temp"
 
-FileUtils.cp_r "css", "temp\\css\\"
-FileUtils.cp_r "vendor", "temp\\vendor\\"
-FileUtils.cp_r "html", "temp\\html\\"
-FileUtils.cp_r "icon", "temp\\icon\\"
-FileUtils.cp_r "manifest.json", "temp\\"
+FileUtils.cp_r "css", "temp\\css"
+FileUtils.cp_r "vendor", "temp\\vendor"
+FileUtils.cp_r "html", "temp\\html"
+FileUtils.cp_r "icon", "temp\\icon"
+FileUtils.cp_r "manifest.json", "temp"
 
-Zip::File.open("TeamCityStatusMonitor.zip", Zip::File::CREATE) do |zipfile|
-  zipfile.add "css", "temp\\css\\"
-  zipfile.add "vendor", "temp\\vendor\\"
-  zipfile.add "html", "temp\\html\\"
-  zipfile.add "icon", "temp\\icon\\"
-  zipfile.add "manifest.json", "temp\\manifest.json"
+require "zip/zip"
+require "find"
+
+class Zipper
+  def self.zip(dir, zip_dir, remove_after = false)
+    Zip::ZipFile.open(zip_dir, Zip::ZipFile::CREATE)do |zipfile|
+      Find.find(dir) do |path|
+        Find.prune if File.basename(path)[0] == ?.
+        dest = /#{dir}\/(\w.*)/.match(path)
+        begin
+          zipfile.add(dest[1],path) if dest
+        rescue Zip::ZipEntryExistsError
+        end
+      end
+    end
+    FileUtils.rm_rf(dir) if remove_after
+  end 
 end
+
+Zipper.zip "temp", "TeamCityStatusMonitor.zip"
 
 FileUtils.rm_rf "temp"
