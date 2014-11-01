@@ -3,9 +3,26 @@
 <head><title>TeamCity Status Monitor Options</title></head>
 <body>
 
-Refresh every 
+<label for="refreshRate">
+Refresh rate (seconds):
+</label>
 <input type="text" id="refreshRate" />
-seconds
+
+<br /><br />
+
+<label for="successMessage">
+Success message: 
+</label>
+<input type="text" id="successMessage" />
+
+<br /><br />
+
+<label for="hideCursor">
+Hide cursor: 
+</label>
+<input type="checkbox" id="hideCursor" />
+
+<br /><br />
 
 <div id="status"></div>
 <button id="save">Save</button>

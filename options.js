@@ -1,7 +1,11 @@
 function save_options() {
   var r = document.getElementById('refreshRate').value;
-  chrome.storage.sync.set({
+  var msg = document.getElementById('successMessage').value;
+  var hc = document.getElementById('hideCursor').checked;
+  chrome.storage.local.set({
     refreshRate: r,
+    successMessage: msg,
+    hideCursor: hc,
   }, function() {
     var status = document.getElementById('status');
     status.textContent = 'Options saved.';
@@ -12,10 +16,14 @@ function save_options() {
 }
 
 function restore_options() {
-  chrome.storage.sync.get({
+  chrome.storage.local.get({
     refreshRate: 10,
+    successMessage: "It's all good",
+    hideCursor: false,
   }, function(items) {
     document.getElementById('refreshRate').value = items.refreshRate;
+    document.getElementById('successMessage').value = items.successMessage;
+    document.getElementById('hideCursor').checked = items.hideCursor;
   });
 }
 
