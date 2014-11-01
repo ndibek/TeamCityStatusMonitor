@@ -2,8 +2,11 @@
   "manifest_version": 2,
 
   "name": "TeamCity Status Monitor",
+  "short_name" : "TC StatusMon",
   "description": "This extension displays TeamCity build status",
   "version": "0.7",
+
+  "author" : "Jamie Holdstock", 
 
   "permissions": [
     "storage"
