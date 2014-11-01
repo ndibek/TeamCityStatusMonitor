@@ -16,16 +16,18 @@ var dateStyle = {
 
 var boxStyle = {
 //	"cursor"          : "none",
-	"position"        : "absolute",
-	"float"           : "left",
-	"margin"          : 0,
-	"padding"         : 0,
-	"border"          : "solid 3px black",
-	"font-family"     : "Arial,Helvetica,sans-serif",
-	"-moz-box-sizing" : "border-box",
-	"left"            : 0,
-	"background-color": "green",
-	"top"             : 0,
+	"position"          : "absolute",
+	"float"             : "left",
+	"margin"            : 0,
+	"padding"           : 0,
+	"border"            : "solid 3px black",
+	"font-family"       : "Arial,Helvetica,sans-serif",
+	"box-sizing"        :"border-box",
+	"-moz-box-sizing"   :"border-box",
+	"-webkit-box-sizing":"border-box",
+	"left"              : 0,
+	"background-color"  : "green",
+	"top"               : 0,
 };
 
 $.extend(dateStyle, baseTextStyle);
