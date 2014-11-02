@@ -25,7 +25,7 @@ body{
 .tsm_box:last-of-type  { margin-bottom: 16px; }
 
 .tsm_success {
-  background-color: #2ecc71;
+  background-color: #4cab4c;
 }
 
 .tsm_failure {
