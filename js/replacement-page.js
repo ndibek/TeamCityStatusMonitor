@@ -1,13 +1,9 @@
 function ReplacementPage(hideCursor) {
 
 	this.hideCursor = hideCursor;
-	this.height     = window.innerHeight;
-	this.width      = window.innerWidth;
 
   this.renderSuccess = function(successMessage) {
-		var boxElement = $("<div>").addClass("tsm_box")
-												.css("height", this.height)
-												.css("width",  this.width);
+		var boxElement = $("<div>").addClass("tsm_box");
 
 		if (this.hideCursor) {
 			boxElement.css("cursor", "none");
@@ -21,13 +17,9 @@ function ReplacementPage(hideCursor) {
 
   this.renderFailures = function(failedConfigurations) {
   	var self = this;
-  	self.height = this.height / failedConfigurations.length;
 
 		$.each(failedConfigurations, function(index, build) {
-			var boxElement = $("<div>").addClass("tsm_box")
-			                     .css("height", self.height)
-			                     .css("width", self.width)
-			                     .css("top", self.height * index);
+			var boxElement = $("<div>").addClass("tsm_box");
 
 			if (index > 0) {
 				boxElement.css("border-top-width", "0px");
