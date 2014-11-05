@@ -10,10 +10,15 @@ function ReplacementPage(hideCursor) {
 		var heading = divWithClasses(["tsm_configurationName"]).text(successMessage);
 
 		boxElement.append(heading);
-		boxElement.appendTo($("body"));
+
+		var wrapper =  divWithClasses(["tsm_wrapper"]);
+		wrapper.append(boxElement);
+		wrapper.appendTo($("body"));
   };
 
   this.renderFailures = function(failedConfigurations) {
+		var wrapper =  divWithClasses(["tsm_wrapper"]);
+
 		$.each(failedConfigurations, function(index, build) {
 			var boxElement;
 
@@ -34,8 +39,9 @@ function ReplacementPage(hideCursor) {
 				boxElement.append(heading).append(message);;
 			}
 
-			boxElement.appendTo($("body"));	
+				wrapper.append(boxElement);
 		});	
+			wrapper.appendTo($("body"));	
   };
 
   divWithClasses = function(classes) {
