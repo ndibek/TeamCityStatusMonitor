@@ -4,6 +4,15 @@ function ReplacementPage(hideCursor) {
 		$("body").css("cursor", "none");
 	};
 
+	var menu = $("<div>").addClass("tsm_menu");
+	menu.attr("id", "tsm_menu");
+	menu.html("Fullscreen");
+	//menu.appendTo($("body"));
+	menu.click(function() {
+		var i = document.getElementById("tsm_wrapper");
+		i.webkitRequestFullscreen();
+	});
+
   this.renderSuccess = function(successMessage) {
 		var boxElement = divWithClasses(["tsm_box", "tsm_success"]);
 
@@ -17,7 +26,7 @@ function ReplacementPage(hideCursor) {
   };
 
   this.renderFailures = function(failedConfigurations) {
-		var wrapper =  divWithClasses(["tsm_wrapper"]);
+		var wrapper =  divWithClasses(["tsm_wrapper"]).attr("id", "tsm_wrapper");
 
 		$.each(failedConfigurations, function(index, build) {
 			var boxElement;
