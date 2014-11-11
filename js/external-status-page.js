@@ -7,13 +7,13 @@ function ExternalStatusPage () {
 			var projectName = $("div.projectName", this).text().trim();
 			
 			$("tr", table).each(function(index, row) {
-				if (index == 0 || $("img.buildTypeIcon", row).attr("src").search(/success.png/) > 0) {
+				if (index == 0 || $("img.buildTypeIcon", row).attr("src").search(/success.png/) > -1) {
 					return;
 				}
 
 				var configurationName = $("td.buildConfigurationName", row).text().trim();
 
-				if ($("img.buildTypeIcon", row).attr("src").search(/buildGray.png/) > 0) {
+				if ($("img.buildTypeIcon", row).attr("src").search(/buildGray.png/) > -1) {
 					var build = new Build(
 						projectName,
 						configurationName,
