@@ -17,33 +17,36 @@ function ReplacementPage() {
   	element.appendTo($("body"));
   };
 
-  this.renderFailures = function(failedConfigurations) {
+  this.renderFailures = function(failedBuilds, notRunBuilds) {
 		this.appendToBody(this.wrapper);
-		
+
 		var that = this;
-		$.each(failedConfigurations, function(index, build) {
+		
+		$.each(failedBuilds, function(index, build) {
 			var bgElement;
 
-			if (build.hasFailed()) {
-				var dateString = "Failed on " + build.getDate() + "<br /><br/>" + build.getElapsedTime();
+			var dateString = "Failed on " + build.getDate() + "<br /><br/>" + build.getElapsedTime();
 
-				bgElement  = $("<div>").addClass("tsm_failure");
-				var heading = $("<div>").addClass("tsm_configurationName").html(build.getName());
-				var number  = $("<div>").addClass("tsm_buildNumber").html(build.getNumber());
-				var date    = $("<div>").addClass("tsm_date").html(dateString);
+			bgElement  = $("<div>").addClass("tsm_failure");
+			var heading = $("<div>").addClass("tsm_configurationName").html(build.getName());
+			var number  = $("<div>").addClass("tsm_buildNumber").html(build.getNumber());
+			var date    = $("<div>").addClass("tsm_date").html(dateString);
 
-				bgElement.append(heading).append(number).append(date);
-			}
-			else {
-				bgElement = $("<div>").addClass("tsm_notrun");
-				var heading = $("<div>").addClass("tsm_configurationName").html(build.getName());
-				var message = $("<div>").addClass("tsm_date").html("Build has never run");
-
-				bgElement.append(heading).append(message);;
-			}
+			bgElement.append(heading).append(number).append(date);
 
 			that.wrapper.append(bgElement);
 		});	
 		
+		$.each(notRunBuilds, function(index, build) {
+			var bgElement;
+
+			bgElement = $("<div>").addClass("tsm_notrun");
+			var heading = $("<div>").addClass("tsm_configurationName").html(build.getName());
+			var message = $("<div>").addClass("tsm_date").html("Build has never run");
+
+			bgElement.append(heading).append(message);;
+
+			that.wrapper.append(bgElement);
+		});
   };
 }

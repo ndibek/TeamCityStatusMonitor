@@ -1,8 +1,10 @@
 function ExternalStatusPage () {
+	this.failedBuilds = [];
+	this.notRunBuilds = [];
 
-  this.getFailedConfigurations = function() {
-    var failedConfigurations = [];
-    
+	this.allBuildsAreGreen= function() {
+
+		var that = this;
 		$("table.tcTable").each(function(index, table) {
 			var projectName = $("div.projectName", this).text().trim();
 			
@@ -16,11 +18,10 @@ function ExternalStatusPage () {
 				if ($("img.buildTypeIcon", row).attr("src").search(/buildGray.png/) > -1) {
 					var build = new Build(
 						projectName,
-						configurationName,
-						false
+						configurationName
 					);
 
-					failedConfigurations.push(build);
+					that.notRunBuilds.push(build);
 					return;
 				}
 
@@ -30,16 +31,24 @@ function ExternalStatusPage () {
 				var build = new Build(
 					projectName,
 					configurationName,
-					true,
 					buildNumber,
 					date
 				);
 
-				failedConfigurations.push(build);
+				that.failedBuilds.push(build);
 			});
 		});
-		return failedConfigurations;
+
+		return this.failedBuilds.length === 0 && this.notRunBuilds.length === 0;
+	};
+
+  this.getFailedBuilds = function() {
+		return this.failedBuilds;    
   };
+
+	this.getNotRunBuilds = function() {
+		return this.notRunBuilds;    
+  };  
 
   this.hide = function() {
   	$("table.tcTable").hide();
