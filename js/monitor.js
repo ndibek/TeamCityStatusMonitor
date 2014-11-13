@@ -5,10 +5,14 @@ var run = function(config) {
 	
 	var originalPage = new ExternalStatusPage();
 	originalPage.hide();	
+	
+	if (config.hideCursor) {
+		$("body").css("cursor", "none");
+	};
 
 	var failedConfigurations = originalPage.getFailedConfigurations();
 
-	var replacementPage = new ReplacementPage(config.hideCursor);
+	var replacementPage = new ReplacementPage();
 
 	if (failedConfigurations.length === 0) {
 		replacementPage.renderSuccess(config.successMessage);

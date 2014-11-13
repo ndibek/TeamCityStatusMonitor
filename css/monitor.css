@@ -19,27 +19,9 @@ body, .tsm_wrapper {
 }
 
 /*
-    Menu
-*/
-
-.tsm_menu {
-  border          : 2px solid black;
-  cursor          : pointer;
-  font-size       : 1rem;
-  padding         : 0.2rem;
-  position        : absolute;
-  top             : 0.2rem;
-  left            : 50%;
-  transform       : translate(-50%, 0);
-  background-color: #dadada;
-  color           : black;
-  z-index         : 999999;
-}
-
-/*
      Background divs
 */
-.tsm_box {
+.tsm_success, .tsm_failure, .tsm_notrun {
   flex         : 1;
   box-sizing   : border-box;
   padding      : 10px;
@@ -66,13 +48,6 @@ body, .tsm_wrapper {
 /*
      Text divs
 */
-.tsm_success_text {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
 
 .tsm_date, .tsm_configurationName, .tsm_buildNumber {
   margin     : 0.1rem;
@@ -98,4 +73,13 @@ body, .tsm_wrapper {
   opacity  : 0.3;
   position : absolute;
   bottom   : 0;
+}
+
+.tsm_success_text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  font-size  : 3.5rem;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }

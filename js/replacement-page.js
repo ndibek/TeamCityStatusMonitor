@@ -1,64 +1,49 @@
-function ReplacementPage(hideCursor) {
+function ReplacementPage() {
 
-	if (hideCursor) {
-		$("body").css("cursor", "none");
-	};
-
-	var menu = $("<div>").addClass("tsm_menu");
-	menu.attr("id", "tsm_menu");
-	menu.html("Fullscreen");
-	//menu.appendTo($("body"));
-	menu.click(function() {
-		var i = document.getElementById("tsm_wrapper");
-		i.webkitRequestFullscreen();
-	});
+	this.wrapper = $("<div>").addClass("tsm_wrapper");
 
   this.renderSuccess = function(successMessage) {
-		var boxElement = divWithClasses(["tsm_box", "tsm_success"]);
+		this.appendToBody(this.wrapper);
+		var bgElement = $("<div>").addClass("tsm_success");
 
-		var heading = divWithClasses(["tsm_configurationName", "tsm_success_text"]).text(successMessage);
+		var heading = $("<div>").addClass("tsm_success_text").html(successMessage);
 
-		boxElement.append(heading);
+		bgElement.append(heading);
 
-		var wrapper =  divWithClasses(["tsm_wrapper"]);
-		wrapper.append(boxElement);
-		wrapper.appendTo($("body"));
+		this.wrapper.append(bgElement);
+  };
+
+  this.appendToBody = function(element) {
+  	element.appendTo($("body"));
   };
 
   this.renderFailures = function(failedConfigurations) {
-		var wrapper =  divWithClasses(["tsm_wrapper"]).attr("id", "tsm_wrapper");
-
+		this.appendToBody(this.wrapper);
+		
+		var that = this;
 		$.each(failedConfigurations, function(index, build) {
-			var boxElement;
+			var bgElement;
 
 			if (build.hasFailed()) {
-				boxElement = divWithClasses(["tsm_box", "tsm_failure"]);
-				var heading = divWithClasses(["tsm_configurationName"]).text(build.getName());
-				var number  = divWithClasses(["tsm_buildNumber"]).text(build.getNumber());
-				var date    = divWithClasses(["tsm_date"]).html("Failed on " + build.getDate() + "<br /><br/>" + build.getElapsedTime());
-				//var elapsed = divWithClasses(["tsm_elapsed"]).text();
+				var dateString = "Failed on " + build.getDate() + "<br /><br/>" + build.getElapsedTime();
 
-				boxElement.append(heading).append(number).append(date);//.append(elapsed);
+				bgElement  = $("<div>").addClass("tsm_failure");
+				var heading = $("<div>").addClass("tsm_configurationName").html(build.getName());
+				var number  = $("<div>").addClass("tsm_buildNumber").html(build.getNumber());
+				var date    = $("<div>").addClass("tsm_date").html(dateString);
+
+				bgElement.append(heading).append(number).append(date);
 			}
 			else {
-				boxElement = divWithClasses(["tsm_box", "tsm_notrun"]);
-				var heading = divWithClasses(["tsm_configurationName"]).text(build.getName());
-				var message = divWithClasses(["tsm_date"]).text("Build has never run");
+				bgElement = $("<div>").addClass("tsm_notrun");
+				var heading = $("<div>").addClass("tsm_configurationName").html(build.getName());
+				var message = $("<div>").addClass("tsm_date").html("Build has never run");
 
-				boxElement.append(heading).append(message);;
+				bgElement.append(heading).append(message);;
 			}
 
-				wrapper.append(boxElement);
+			that.wrapper.append(bgElement);
 		});	
-			wrapper.appendTo($("body"));	
+		
   };
-
-  divWithClasses = function(classes) {
-  	var element = $("<div>");
-  	$.each(classes, function(index, c) {
-  		element.addClass(c);
-  	});
-  	return element;
-  }
-
 }
