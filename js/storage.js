@@ -7,7 +7,7 @@ function saveConfig(items, callback) {
 function loadConfig(callback) {
   chrome.storage.local.get({
     refreshRate: 10,
-    successMessage: "It's all good",
+    successMessage: "Everything is passing",
     hideCursor: false,
   }, function(items) {
     callback(items);

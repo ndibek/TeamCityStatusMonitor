@@ -66,6 +66,14 @@ body, .tsm_wrapper {
 /*
      Text divs
 */
+.tsm_success_text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .tsm_date, .tsm_configurationName, .tsm_buildNumber {
   margin     : 0.1rem;
 }

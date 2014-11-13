@@ -16,7 +16,7 @@ function ReplacementPage(hideCursor) {
   this.renderSuccess = function(successMessage) {
 		var boxElement = divWithClasses(["tsm_box", "tsm_success"]);
 
-		var heading = divWithClasses(["tsm_configurationName"]).text(successMessage);
+		var heading = divWithClasses(["tsm_configurationName", "tsm_success_text"]).text(successMessage);
 
 		boxElement.append(heading);
 
