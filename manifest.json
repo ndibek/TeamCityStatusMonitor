@@ -26,7 +26,6 @@
              "48": "icon/48x48.png",
              "64": "icon/64x64.png",
              "96": "icon/96x96.png",
-            "128": "icon/128x128.png",
             "128": "icon/128x128.png"},
 
   "content_scripts": [
